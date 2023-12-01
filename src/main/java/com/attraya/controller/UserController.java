@@ -2,6 +2,7 @@ package com.attraya.controller;
 
 import com.attraya.dto.UserRequest;
 import com.attraya.entity.User;
+import com.attraya.exception.UserNotFoundException;
 import com.attraya.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable int id) {
+    public ResponseEntity<User> getUser(@PathVariable int id) throws UserNotFoundException {
         return ResponseEntity.ok(service.getUser(id));
     }
 }

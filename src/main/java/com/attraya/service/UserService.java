@@ -2,6 +2,7 @@ package com.attraya.service;
 
 import com.attraya.dto.UserRequest;
 import com.attraya.entity.User;
+import com.attraya.exception.UserNotFoundException;
 import com.attraya.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,12 @@ public class UserService {
         return repository.findAll();
     }
 
-    public User getUser(int id) {
-        return repository.findByUserId(id);
+    public User getUser(int id) throws UserNotFoundException {
+        User user = repository.findByUserId(id);
+        if (user!=null){
+            return user;
+        } else {
+            throw new UserNotFoundException("user not found with id: "+id);
+        }
     }
 }
