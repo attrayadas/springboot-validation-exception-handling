@@ -3,6 +3,7 @@ package com.attraya.controller;
 import com.attraya.dto.UserRequest;
 import com.attraya.entity.User;
 import com.attraya.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class UserController {
     private UserService service;
 
     @PostMapping("/signup")
-    public ResponseEntity<User> saveUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<User> saveUser(@RequestBody @Valid UserRequest userRequest) {
         return new ResponseEntity<>(service.saveUser(userRequest), HttpStatus.CREATED);
     }
 
