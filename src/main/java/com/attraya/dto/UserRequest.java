@@ -1,5 +1,6 @@
 package com.attraya.dto;
 
+import com.attraya.validation.ValidateGender;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,10 @@ public class UserRequest {
     private String email;
     @Pattern(regexp = "^\\d{10}$", message = "invalid mobile number")
     private String mobile;
-    private String gender;
+
+    // custom annotation
+    @ValidateGender
+    private String gender; // Male or Female
     @Min(18)
     @Max(60)
     private int age;
